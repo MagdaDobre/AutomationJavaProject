@@ -13,7 +13,7 @@ public class AdaugaProdusPage extends BasePage {
 
     @FindBy(xpath = "//a[text()='Accept toate']")
     private WebElement acceptCookiesElement;
-    @FindBy(xpath = "//a[@aria-label='Close']")
+    @FindBy(xpath = "//a[@aria-label='Close' and @aria-hidden='true']")
     private WebElement closeNewsletterElement;
     @FindBy(xpath = "//a[text()='Noutati']")
     private WebElement noutatiElement;
@@ -29,6 +29,11 @@ public class AdaugaProdusPage extends BasePage {
     }
 
     public void clickCloseNewsletter() {
+        try {
+            Thread.sleep(5000);
+        } catch(InterruptedException e){
+            throw new RuntimeException(e);
+        }
         elementMethods.clickElement(closeNewsletterElement);
         LoggerUtility.infoLog("The user clicks on the close newsletter button.");
     }

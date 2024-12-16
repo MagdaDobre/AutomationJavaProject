@@ -13,7 +13,7 @@ public class CosPage extends BasePage {
 
     @FindBy(xpath = "//a[text()='Accept toate']")
     private WebElement acceptCookiesElement;
-    @FindBy(xpath = "//a[@aria-label='Close']")
+    @FindBy(xpath = "//a[@aria-label='Close' and @aria-hidden='true']")
     private WebElement closeNewsletterElement;
 
     @FindBy(xpath = "//div[@class='item-title']/a[@data-id='35462042']")
@@ -62,6 +62,11 @@ public class CosPage extends BasePage {
     }
 
     public void clickCloseNewsletter() {
+        try {
+            Thread.sleep(5000);
+        } catch(InterruptedException e){
+            throw new RuntimeException(e);
+        }
         elementMethods.waitVisibleElement(closeNewsletterElement);
         elementMethods.clickJSElement(closeNewsletterElement);
         LoggerUtility.infoLog("The user clicks on the close newsletter button.");
